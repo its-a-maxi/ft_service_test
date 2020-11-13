@@ -14,7 +14,11 @@ RUN adduser -D -g 'www' www
 RUN adduser -D user
 RUN echo "user:password" | chpasswd
 RUN ssh-keygen -A
-RUN yes "" | openssl req -x509 -nodes -days 365 -subj "/C=CA/ST=QC/O=Company, Inc./CN=mydomain.com" -addext "subjectAltName=DNS:mydomain.com" -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt;
+RUN yes "" | openssl req -x509 -nodes -days 365 \
+-subj "/C=SP/ST=Spain/L=Madrid/O=42/CN=127.0.0.1" \
+-newkey rsa:2048 \
+-keyout /etc/ssl/private/nginx-selfsigned.key \
+-out /etc/ssl/certs/nginx-selfsigned.crt
 
 # Setup nginx files
 RUN mkdir /www
@@ -32,6 +36,4 @@ RUN chmod +x /nginx_run.sh
 CMD sh ./nginx_run.sh
 
 # Expose the following ports for other docker images?
-EXPOSE 80
-EXPOSE 443
-EXPOSE 22
+EXPOSE 80 443 22
