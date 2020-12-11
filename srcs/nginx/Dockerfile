@@ -35,5 +35,5 @@ COPY nginx_run.sh ./nginx_run.sh
 RUN chmod +x /nginx_run.sh
 CMD sh ./nginx_run.sh
 
-# Expose the following ports for other docker images?
+# Expose port 80 for http, 443 for https and 22 for ssh access
 EXPOSE 80 443 22
