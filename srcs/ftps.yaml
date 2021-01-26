@@ -13,10 +13,6 @@ spec:
     port: 21
     protocol: TCP
     targetPort: 21
-  - name: ftps-pasv
-    port: 30021
-    protocol: TCP
-    targetPort: 30021
   selector:
     app: ftps
   type: LoadBalancer
@@ -33,7 +29,6 @@ spec:
   selector:
     matchLabels:
       app: ftps
-    type: RollingUpdate
   template:
     metadata:
       creationTimestamp: null
